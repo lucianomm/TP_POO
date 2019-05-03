@@ -6,7 +6,7 @@ using namespace std;
 class Matrix {
 private:
     double** _ptr;             // 2D vector
-    const int _rows, _columns;
+    int _rows, _columns;
 
     void alloc_arrays() {
         _ptr = new double*[_rows];                                          // creates vector
@@ -21,6 +21,7 @@ public:
     int get_rows() const { return _rows; }                      // returns # rows
     int get_columns() const { return _columns; }                // returns # columns
     double get_value(int i, int j) const { return _ptr[i][j]; } // returns the value of a given position
+    double** get_ptr() const { return _ptr; }
 
     void unit();    // transforms into identity matrix -- checks for correct dimensions, otherwise doesn't change
     void zeros();   //     "        "  zeros      "
@@ -29,10 +30,13 @@ public:
     friend istream& operator>> (istream&, Matrix&);         // modifies '>>' to receive inputs to change empty matrices
     friend ostream& operator<< (ostream&, const Matrix&);   // modifies '<<' to output matrices directly
 
-    friend Matrix operator+ (const Matrix&, const Matrix&); // allows A = B + C
-    friend Matrix operator- (const Matrix&, const Matrix&); // allows A = B - C
-    friend Matrix operator* (const Matrix&, const Matrix&); // allows A = B * C
-
+    double& operator()(const int &, const int &);
+    Matrix& operator= (const Matrix&);
+    Matrix operator+ (Matrix&); // allows A = B + C
+    Matrix operator- (Matrix&); // allows A = B - C
+    Matrix operator* (Matrix&); // allows A = B * C
+    Matrix operator* (double);  // allows A = B * x, x -> (-inf, +inf)
+    Matrix operator~ ();        // allows A = B^(t)
     bool operator== (const Matrix&);  // allows A == B
     bool operator!= (const Matrix&);  // allows A != B
 
