@@ -146,9 +146,25 @@ Matrix Matrix::operator- (Matrix &B) {
 }
 
 Matrix Matrix::operator* (Matrix &B) {
-    Matrix mult;
+    Matrix mult(this->get_rows(), B.get_columns());                 // A[m,n] * B[p,q] -> C[m,q]
+    double** ptr = mult.get_ptr();
 
-    return mult;
+    if (this->get_columns() == B.get_rows()) {                      // checks viability
+        double temp = 0;                                            // stores temporary sum
+
+        for (int i = 0; i < this->get_rows(); i++) {
+            for (int j = 0; j < B.get_columns(); j++) {
+                temp = 0;
+
+                for (int k = 0; k < this->get_columns(); k++) {     // iterate each row and column in each scalar multiplication
+                    temp += this->_ptr[i][k] * B.get_value(k, j);   // sum that results in one element of mult
+                }
+                ptr[i][j] = temp;
+            }
+        }
+        return mult;
+    }
+    else return *this;
 }
 
 // multiplies by scalar
@@ -181,7 +197,7 @@ Matrix Matrix::operator~ () {
 //     /* */
 //     return result;
 // }
-//
+
 // bool Matrix::operator!= (const Matrix&) {
 //     bool result = false;
 //     /* */

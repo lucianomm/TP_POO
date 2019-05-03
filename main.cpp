@@ -51,7 +51,9 @@ int main(int argc, char* argv[])
     cout << "transposta de Y" << endl;
     cout << "W:" << "\n" << W << endl;
 
-
+    Matrix M = C * D;
+    cout << "C * D" << endl;
+    cout << "M:" << "\n" << M << endl;
 
     // C=A+A;                          // Soma
     // C-=A;                           // Subtração
