@@ -39,6 +39,10 @@ public:
     Matrix operator~ ();        // allows A = B^(t)
     bool operator== (const Matrix&);  // allows A == B
     bool operator!= (const Matrix&);  // allows A != B
+    Matrix operator-= (Matrix&);// allows A -= B
+    Matrix operator+= (Matrix&);// allows A += B
+    Matrix operator*= (Matrix&);// allows A *= B
+    Matrix operator*= (double);// allows A *= B
 
     ~Matrix();      // destructor
 };
