@@ -55,17 +55,29 @@ int main(int argc, char* argv[])
     cout << "C * D" << endl;
     cout << "M:" << "\n" << M << endl;
 
-    // C=A+A;                          // Soma
-    // C-=A;                           // Subtração
-    // A=C-A;                          // Subtração
-    // A+=A;                           // Soma
-    // A=~C;                           // A é igual a transposta de C
-
-    // X*=2;                           // multiplicação por uma constante
-    // C=A*X;                          // multiplicação de Matrixes
-    // C*=X;                           // multiplicação de Matrixes
-    // if (A == C)                     // verifica a igualdade entre A e C
-    // if(X != Y)                      // verifica a desigualdade entre A e C
+    C=A+A;                          // Soma
+    std::cout << "C = A + A" << "\n";
+    std::cout << "C:" << "\n" << C << endl;
+    C-=A;                           // Subtração
+    std::cout << "C -= A" << "\n";
+    std::cout << "C:" << "\n" << C << endl;
+    A=C-A;                          // Subtração
+    std::cout << "A = C - A" << "\n";
+    std::cout << "A:" << "\n" << A << endl;
+    A+=A;                           // Soma
+    std::cout << "A += A" << "\n";
+    std::cout << "A:" << "\n" << A << endl;
+    A=~C;                           // A é igual a transposta de C
+    std::cout << "A =~ C" << "\n";
+    std::cout << "A:" << "\n" << A << endl;
+    Z*=2;                           // multiplicação por uma constante
+    Z=A*C;                          // multiplicação de Matrixes
+    Z*=C;                           // multiplicação de Matrixes
+    std::cout << "Teste de igualdade A==C:" << endl;
+    if (A == C)                       // verifica a igualdade entre A e C
+    std::cout << "A == C" << "\n";
+    if (A != C)                       // verifica a desigualdade entre A e C
+    std::cout << "A != C" << "\n";
 
     return 0;
 }

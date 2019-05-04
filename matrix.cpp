@@ -192,18 +192,47 @@ Matrix Matrix::operator~ () {
     return transp;
 }
 
-// bool Matrix::operator== (const Matrix&) {
-//     bool result = false;
-//     /* */
-//     return result;
-// }
+bool Matrix::operator== (const Matrix &B){
+    double **ptr = B.get_ptr();
+    if (this->get_rows()!= B.get_rows())           // tests equallity of rows/columns
+    return false;
+    if (this->get_columns() != B.get_columns())     //
+    return false;
+    for (int i = 1; i <= this->_rows; i++){
+        for (int j = 1; j <= this->_columns; j++)
+        {
+            if (this->_ptr[i][j] != ptr[i][j])
+            {
+                return false;                   // returns false if any
+            }                                   // differences are found
+        }
+    }
+    return true;                                // returns true elsewise
+}
 
-// bool Matrix::operator!= (const Matrix&) {
-//     bool result = false;
-//     /* */
-//     return result;
-// }
+bool Matrix::operator!= (const Matrix &B) {
+    return !(*this == B);
+}
 
+Matrix Matrix::operator-= (Matrix &B){
+    *this = *this - B;
+    return *this;
+}
+
+Matrix Matrix::operator+= (Matrix &B){
+    *this = *this + B;
+    return (*this);
+}
+
+Matrix Matrix::operator*= (Matrix &B){
+    *this = *this * B;
+    return (*this);
+}
+
+Matrix Matrix::operator*= (double escalar){
+    *this = *this * escalar;
+    return (*this);
+}
 
 Matrix::~Matrix() {
 	for(int i = 0; i < _rows; i++) delete[] this->_ptr[i];
